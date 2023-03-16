@@ -1,22 +1,50 @@
 // Option 1: Import the entire three.js core library.
 import * as THREE from 'three';
 import { Camera } from 'three';
+import "./style.css"
 
 const scene = new THREE.Scene();
 //Lighting
 const light = new THREE.PointLight(0xffffff,8,100);
 light.position.set(0,5,10);
 scene.add(light);
+window.console.log("test")
+// Window Size 
+var sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
+}
+
+//Resize
+window.addEventListener('resize', () => {
+    console.log("blahhh")
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+    //camera
+    
+    camera.aspect = sizes.width / sizes.height;
+
+    renderer.setSize(sizes.width, sizes.height);
+    // const loop = () => {
+        //renderer.render(scene, camera);
+        camera.updateProjectionMatrix();
+        console.log("looping")
+        window.requestAnimationFrame(() =>{renderer.render(scene, camera)})
+    // }
+    // loop()
+})
 
 //Camera
-const camera = new THREE.PerspectiveCamera(45, 800/600)
+const camera = new THREE.PerspectiveCamera(45, sizes.width/sizes.height)
 camera.position.z = 14;
 scene.add(camera)
 
-//render
+
+
+//renderer
 const canvas = document.querySelector('.webgl');
 const renderer = new THREE.WebGLRenderer({canvas});
-renderer.setSize(800,600);
+renderer.setSize(sizes.width,sizes.height);
 
 // create sphere
 const geometry = new THREE.SphereGeometry(3,100,100);
@@ -32,5 +60,8 @@ scene.add(mesh);
 //render whole scene after mesh texture is loaded
 renderer.render(scene, camera);
 
+
 }) 
+
+
 
