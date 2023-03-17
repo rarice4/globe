@@ -59,6 +59,17 @@ scene.add(mesh);
 
 //render whole scene after mesh texture is loaded
 renderer.render(scene, camera);
+const loop = () => {
+    light.rotateX(30)
+    light.rotateY(30)
+    //light.rotation.y += 0.2
+    //light.rotation.z += 0.2
+    renderer.render(scene, camera)
+    console.log("loopyyyyy")
+    window.requestAnimationFrame(loop)
+}
+loop();
+
 
 
 }) 
