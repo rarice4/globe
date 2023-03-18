@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import { Camera } from 'three';
 import "./style.css"
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
 const scene = new THREE.Scene();
 //Lighting
@@ -36,8 +37,11 @@ window.addEventListener('resize', () => {
 
 //Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width/sizes.height)
-camera.position.z = 14;
+camera.position.z = 10;
 scene.add(camera)
+
+
+
 
 
 
@@ -45,6 +49,9 @@ scene.add(camera)
 const canvas = document.querySelector('.webgl');
 const renderer = new THREE.WebGLRenderer({canvas});
 renderer.setSize(sizes.width,sizes.height);
+
+// Controls
+const controls = new OrbitControls(camera, canvas);
 
 // create sphere
 const geometry = new THREE.SphereGeometry(3,100,100);
