@@ -7,8 +7,12 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 const scene = new THREE.Scene();
 //Lighting
 const light = new THREE.PointLight(0xffffff,8,100);
-light.position.set(0,5,10);
-scene.add(light);
+light.position.set(10,5,20);
+// create fixed lighting position
+var lightHolder = new THREE.Group();
+lightHolder.add(light);
+
+scene.add(lightHolder);
 window.console.log("test")
 // Window Size 
 var sizes = {
@@ -37,7 +41,7 @@ window.addEventListener('resize', () => {
 
 //Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width/sizes.height)
-camera.position.z = 10;
+camera.position.z = 8;
 scene.add(camera)
 
 
@@ -49,9 +53,14 @@ scene.add(camera)
 const canvas = document.querySelector('.webgl');
 const renderer = new THREE.WebGLRenderer({canvas});
 renderer.setSize(sizes.width,sizes.height);
+renderer.setPixelRatio(2);
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
+//controls.enableDamping = true;
+controls.enablePan = false;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.2;
 
 // create sphere
 const geometry = new THREE.SphereGeometry(3,100,100);
@@ -67,12 +76,11 @@ scene.add(mesh);
 //render whole scene after mesh texture is loaded
 renderer.render(scene, camera);
 const loop = () => {
-    light.rotateX(30)
-    light.rotateY(30)
-    //light.rotation.y += 0.2
-    //light.rotation.z += 0.2
+    
+    controls.update(); //creates rotation
     renderer.render(scene, camera)
     console.log("loopyyyyy")
+    lightHolder.quaternion.copy(camera.quaternion);
     window.requestAnimationFrame(loop)
 }
 loop();
