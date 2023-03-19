@@ -64,7 +64,7 @@ controls.autoRotateSpeed = 0.2;
 
 // create sphere
 const geometry = new THREE.SphereGeometry(3,100,100);
-const loader = new THREE.TextureLoader()
+const loader = new THREE.TextureLoader();
 loader.load('img/globe.jpeg',function(texture){
     const material = new THREE.MeshStandardMaterial({
         color:"#3285a8",
