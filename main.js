@@ -1,9 +1,9 @@
 // Option 1: Import the entire three.js core library.
-import * as THREE from './three';
-import { Camera } from './three';
+import * as THREE from 'three';
+import { Camera } from 'three';
 import "./style.css"
-import {OrbitControls} from './three/examples/jsm/controls/OrbitControls'
-import { MathUtils } from './three';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
+import { MathUtils } from 'three';
 
 const scene = new THREE.Scene();
 //Lighting

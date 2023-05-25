@@ -2,7 +2,7 @@
   "name": "globe",
   "private": false,
   "version": "0.0.0",
-  "main":"main.js",
+  "main": "main.js",
   "homepage": "https://rarice4.github.io/globe/",
   "type": "module",
   "devDependencies": {
@@ -15,8 +15,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "gsap": "^3.11.4"
+    "gsap": "^3.11.4",
+    "three": "^0.152.2"
   }
 }
-
-
