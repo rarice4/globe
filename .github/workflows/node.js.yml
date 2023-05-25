@@ -30,6 +30,3 @@ jobs:
     - run: npm run build --if-present
     - run: npm test --if-present
    
-   deploy:
-    name: Deploy
-    needs: build
