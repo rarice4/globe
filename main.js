@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { Camera } from 'three';
 import "./style.css"
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
+import { MathUtils } from 'three';
 
 const scene = new THREE.Scene();
 //Lighting
@@ -65,7 +66,8 @@ controls.autoRotateSpeed = 0.2;
 // create sphere
 const geometry = new THREE.SphereGeometry(3,100,100);
 const loader = new THREE.TextureLoader();
-loader.load('img/globe.jpeg',function(texture){
+
+loader.load('img/earth-dark.jpg',function(texture){
     const material = new THREE.MeshStandardMaterial({
         color:"#3285a8",
         map: texture 
@@ -73,7 +75,43 @@ loader.load('img/globe.jpeg',function(texture){
     const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
+
+const seattle  = new THREE.Mesh(
+    new THREE.SphereGeometry(0.01,20,20),
+    new THREE.MeshBasicMaterial({color:0xff0000})
+);
+
+
+var getCoordinatesFromLatLng = function(latitude, longitude, radiusEarth)
+{
+   let latitude_rad = latitude * Math.PI / 180;
+   let longitude_rad = longitude * Math.PI / 180;
+
+   let xPos= radiusEarth * Math.cos(latitude_rad) * Math.cos(longitude_rad);
+   let zPos = radiusEarth * Math.cos(latitude_rad) * Math.sin(longitude_rad);
+   let yPos = radiusEarth * Math.sin(latitude_rad);
+   
+   return {x: xPos, y: yPos, z: zPos};
+}
+
+var seattlecoord = getCoordinatesFromLatLng(47.6062, 122.3321, 3);
+seattle.position.set(seattlecoord.x,seattlecoord.y,seattlecoord.z)
+scene.add(seattle)
+
+
+
+
+
+
+
+
+
+
+
+
+
 //render whole scene after mesh texture is loaded
+
 renderer.render(scene, camera);
 const loop = () => {
     
