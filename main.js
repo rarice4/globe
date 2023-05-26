@@ -7,7 +7,7 @@ import { MathUtils } from 'three';
 
 const scene = new THREE.Scene();
 //Lighting
-const light = new THREE.PointLight(0xffffff,8,50);
+const light = new THREE.PointLight(0xffffff,8,65);
 light.position.set(20,5,30);
 // create fixed lighting position
 var lightHolder = new THREE.Group();
