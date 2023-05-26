@@ -1,7 +1,7 @@
 // Option 1: Import the entire three.js core library.
 import * as THREE from 'three';
 import { Camera } from 'three';
-import "./style.css"
+// import "./style.css"
 import {OrbitControls} from 'https://unpkg.com/three@0.152.2/examples/jsm/controls/OrbitControls.js'
 import { MathUtils } from 'three';
 
