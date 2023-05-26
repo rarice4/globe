@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { Camera } from 'three';
 import "./style.css"
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
+import {OrbitControls} from 'https://unpkg.com/three@0.152.2/examples/jsm/controls/OrbitControls.js'
 import { MathUtils } from 'three';
 
 const scene = new THREE.Scene();
